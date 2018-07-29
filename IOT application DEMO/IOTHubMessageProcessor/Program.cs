@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Azure.EventHubs;
 using Microsoft.Azure.WebJobs;
+using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace IOTHubMessageProcessor
 {
@@ -100,8 +101,17 @@ namespace IOTHubMessageProcessor
                     {
                         Console.WriteLine("  {0}: {1}", prop.Key, prop.Value);
                     }
+
+                    new Program().Upload("test");
                 }
             }
+        }
+        public async void Upload(string filename)
+        {
+            BlobStorageServices blobStorageServices = new BlobStorageServices();
+            CloudBlobContainer blobContainer = blobStorageServices.GetCloudBlobContainer();
+            CloudBlockBlob blob = blobContainer.GetBlockBlobReference(filename);
+            await blob.UploadFromFileAsync(filename);
         }
 
     }
