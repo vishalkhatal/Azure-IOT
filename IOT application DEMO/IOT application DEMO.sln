@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IOT application DEMO", "IOT application DEMO\IOT application DEMO.csproj", "{5B5DBE45-E461-4AFE-9181-67294C897D41}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IOTHubMessageProcessor", "IOTHubMessageProcessor\IOTHubMessageProcessor.csproj", "{E9F5E229-AE93-44C9-BF38-7E10B5938015}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{5B5DBE45-E461-4AFE-9181-67294C897D41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B5DBE45-E461-4AFE-9181-67294C897D41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B5DBE45-E461-4AFE-9181-67294C897D41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9F5E229-AE93-44C9-BF38-7E10B5938015}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9F5E229-AE93-44C9-BF38-7E10B5938015}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9F5E229-AE93-44C9-BF38-7E10B5938015}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9F5E229-AE93-44C9-BF38-7E10B5938015}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
