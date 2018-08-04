@@ -15,34 +15,20 @@ namespace IOTHubMessageProcessor
     {
         // Event Hub-compatible endpoint
         // az iot hub show --query properties.eventHubEndpoints.events.endpoint --name {your IoT Hub name}
-        private readonly static string s_eventHubsCompatibleEndpoint = "sb://xxx.servicebus.windows.net/;SharedAccessKeyName=iothubowner;SharedAccessKey=NmUSMzkzk1KqEmirTGemTeR/ff2CDmV09RNptaxBHDo=";
+        private readonly static string s_eventHubsCompatibleEndpoint = "";
 
         // Event Hub-compatible name
         // az iot hub show --query properties.eventHubEndpoints.events.path --name {your IoT Hub name}
-        private readonly static string s_eventHubsCompatiblePath = "iothub-ehub-xxxx-xxx-1b15c2c1d5";
+        private readonly static string s_eventHubsCompatiblePath = "";
 
 
         // az iot hub policy show --name iothubowner --query primaryKey --hub-name {your IoT Hub name}
-        private readonly static string s_iotHubSasKey = "xxxxx/ff2CDmV09RNptaxBHDo=";
-        private readonly static string s_iotHubSasKeyName = "iothubowner";
+        private readonly static string s_iotHubSasKey = "";
+        private readonly static string s_iotHubSasKeyName = "";
         private static EventHubClient s_eventHubClient;
 
         static void Main()
         {
-            var config = new JobHostConfiguration();
-
-            if (config.IsDevelopment)
-            {
-                config.UseDevelopmentSettings();
-            }
-
-            var host = new JobHost(config);
-            // The following code ensures that the WebJob will be running continuously
-            host.RunAndBlock();
-
-
-            // Create an EventHubClient instance to connect to the
-            // IoT Hub Event Hubs-compatible endpoint.
             var connectionString = new EventHubsConnectionStringBuilder(new Uri(s_eventHubsCompatibleEndpoint), s_eventHubsCompatiblePath, s_iotHubSasKeyName, s_iotHubSasKey);
             s_eventHubClient = EventHubClient.CreateFromConnectionString(connectionString.ToString());
 
@@ -102,7 +88,7 @@ namespace IOTHubMessageProcessor
                         Console.WriteLine("  {0}: {1}", prop.Key, prop.Value);
                     }
 
-                    new Program().Upload("test");
+                    new Program().Upload(@"C:\Users\vikhatal\Desktop\IDisposable.txt");
                 }
             }
         }

@@ -13,7 +13,7 @@ namespace IOTHubMessageProcessor
         public CloudBlobContainer GetCloudBlobContainer()
         {
             // Retrieve storage account from connection string.
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse("");
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse("Storage Account Connection string");
 
             // Create the blob client.
             CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
