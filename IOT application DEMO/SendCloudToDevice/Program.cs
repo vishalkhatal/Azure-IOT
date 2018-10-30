@@ -14,7 +14,7 @@ namespace SendCloudToDevice
         // Please set the following connection strings in app.config for this WebJob to run:
         // AzureWebJobsDashboard and AzureWebJobsStorage
         static ServiceClient serviceClient;
-        static string connectionString = "IOT Hub connection string";
+        static string connectionString = "HostName=IOTKMSDEMO.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=rVLanu9awUMulI8abTV/0n1JzXxzj0DqKqope7oaAZM=";
         static void Main()
         {
             Console.WriteLine("Send Cloud-to-Device message\n");
@@ -27,7 +27,7 @@ namespace SendCloudToDevice
         }
         private async static Task SendCloudToDeviceMessageAsync()
         {
-            var commandMessage = new Message(Encoding.ASCII.GetBytes("Cloud to device message."));
+            var commandMessage = new Message(Encoding.ASCII.GetBytes("Close the Door"));
             commandMessage.Ack = DeliveryAcknowledgement.Full;
             await serviceClient.SendAsync("MyDotnetDevice", commandMessage);
         }

@@ -15,7 +15,7 @@ namespace DeviceSimulator
         // Please set the following connection strings in app.config for this WebJob to run:
         // AzureWebJobsDashboard and AzureWebJobsStorage
         private static DeviceClient s_deviceClient;
-        private readonly static string s_connectionString = "Device connection string";
+        private readonly static string s_connectionString = "HostName=IOTKMSDEMO.azure-devices.net;DeviceId=MyDotnetDevice;SharedAccessKey=/+iV5k6Vn+Hz/eIRbwXHFHIru3+0Tmj/s/8cbnvk5x4=";
 
         static void Main()
         {
@@ -26,34 +26,27 @@ namespace DeviceSimulator
         }
         private static async void SendDeviceToCloudMessagesAsync()
         {
-            // Initial telemetry values
-            double minTemperature = 20;
-            double minHumidity = 60;
-            Random rand = new Random();
-
-            while (true)
+            var noOfMessaheToSend = 10;
+            while (noOfMessaheToSend!=0)
             {
-                double currentTemperature = minTemperature + rand.NextDouble() * 15;
-                double currentHumidity = minHumidity + rand.NextDouble() * 20;
-
                 // Create JSON message
                 var telemetryDataPoint = new
                 {
-                    temperature = currentTemperature,
-                    humidity = currentHumidity
+                    message = "Alert door Open",
                 };
                 var messageString = JsonConvert.SerializeObject(telemetryDataPoint);
                 var message = new Message(Encoding.ASCII.GetBytes(messageString));
 
                 // Add a custom application property to the message.
                 // An IoT hub can filter on these properties without access to the message body.
-                message.Properties.Add("temperatureAlert", (currentTemperature > 30) ? "true" : "false");
+                message.Properties.Add("MessageType", "Alert door Open");
 
                 // Send the tlemetry message
                 await s_deviceClient.SendEventAsync(message);
                 Console.WriteLine("{0} > Sending message: {1}", DateTime.Now, messageString);
 
                 await Task.Delay(1000);
+                noOfMessaheToSend--;
             }
         }
         private static async void ReceiveC2dAsync()
